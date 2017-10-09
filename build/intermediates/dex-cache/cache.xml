@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/rahul/Desktop/NewsApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/rahul/Desktop/NewsApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_92dd1b02d778bfe1da46daf8d50d23c03c6efd36/classes.dex" />
+        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6cde89bd2e2b177dbbd0232245b88bf16771426b/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahul/Desktop/NewsApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="e72fe8ba10afcbdf413b44d82cdeab806247f756">
-        <dex dex="/Users/rahul/Desktop/NewsApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cf7b1820e796d5920819d8e1d48f419c241f9c66/classes.dex" />
+        sha1="b390be4b0d386670dc0df8ef053bab73bd88858c">
+        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_37fa899fa91fc914c957dbb9fda92cd220a078ed/classes.dex" />
     </item>
 
 </items>

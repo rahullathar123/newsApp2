@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // data set. This will trigger the ListView to update.
         if (news != null && !news.isEmpty()) {
             mAdapter.addData(this.news);
+            recyclerView.setAdapter(mAdapter);
         }
     }
 
