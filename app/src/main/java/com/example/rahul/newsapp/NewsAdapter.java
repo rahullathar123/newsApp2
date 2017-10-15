@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
  */
 // to bind the data we created a adapter class
 //we gonna use viewholder inside of Newsadapter thats why we will use<NewsAdapter.ViewHolder>
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     //define NewsData List
     private List<NewsData> news;
     private Context context;
@@ -34,6 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 .inflate(R.layout.cardview, parent, false);
         return new ViewHolder(v);
     }
+
     //this method binds the data to viewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -82,5 +86,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
 
         }
+    }
+
+    public void setNews(List<NewsData> news){
+        List<NewsData> news2 =  new ArrayList<>();
+        news.addAll(news2);
+        notifyDataSetChanged();
     }
 }

@@ -4,16 +4,22 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<NewsData>> {
+public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<NewsData>>, SearchView.OnQueryTextListener{
 
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String URL_Data = "https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47";
@@ -29,11 +35,16 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private RecyclerView recyclerView;
     private NewsAdapter mAdapter;
     private List<NewsData> news;
+    MenuItem searchMenuItem;
+    SearchView searchView;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         // Find a reference to the {@link RecyclerView} in the layout
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);//every item has fixed size
@@ -54,10 +65,11 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         loaderManager.initLoader(News_LOADER_ID, null, this);
     }
 
+
+
     @Override
     public Loader<List<NewsData>> onCreateLoader(int i, Bundle bundle) {
         mProgressBar.setVisibility(View.VISIBLE);
-        Log.wtf(LOG_TAG, "WTF");
         // Create a new loader for the given URL
         return new NewsLoader(this, URL_Data);
 
@@ -81,5 +93,38 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public void onLoaderReset(Loader<List<NewsData>> loader) {
         // Loader reset, so we can clear out our existing data.
         recyclerView.getRecycledViewPool().clear();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        MenuItem menuItem =menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        newText = newText.toLowerCase();
+        Log.wtf(LOG_TAG,"wtf");
+        List<NewsData> newsDataList = new ArrayList<>();
+        for (NewsData newsData : news){
+
+           String name = newsData.getArticleName().toLowerCase();
+            if(name.contains(newText))
+                newsDataList.add(newsData);
+
+        }
+            mAdapter.setNews(newsDataList);
+            return true;
+
     }
 }
