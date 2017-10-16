@@ -117,11 +117,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         Log.wtf(LOG_TAG,"wtf");
         List<NewsData> newsDataList = new ArrayList<>();
         for (NewsData newsData : news){
-
-           String name = newsData.getArticleName().toLowerCase();
+            String name = newsData.getArticleName().toLowerCase();
             if(name.contains(newText))
                 newsDataList.add(newsData);
-
         }
             mAdapter.setNews(newsDataList);
             return true;
