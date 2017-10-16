@@ -121,15 +121,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
 
-           String name = newsData.getArticleName().toLowerCase();
+            String name = newsData.getSectionBelong().toLowerCase();
             if(name.contains(newText))
                 newsDataList.add(newsData);
 
         }
-        if (newsDataList != null && !newsDataList.isEmpty()) {
-            mAdapter.setNews(newsDataList);
-        }
-            return true;
+        mAdapter.setNews(newsDataList);
+        return true;
 
     }
 }
