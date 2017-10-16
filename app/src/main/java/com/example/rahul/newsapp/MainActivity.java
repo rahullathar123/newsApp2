@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         Log.wtf(LOG_TAG,"wtf");
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
-        for (final NewsData newsData : news){
+        for (NewsData newsData : newsDataList){
 
            String name = newsData.getArticleName().toLowerCase();
             if(name.contains(newText))
