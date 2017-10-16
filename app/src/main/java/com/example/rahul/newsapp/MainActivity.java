@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
-        Log.wtf(LOG_TAG,"wtf");
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){

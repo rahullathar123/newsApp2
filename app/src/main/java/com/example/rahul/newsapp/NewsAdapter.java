@@ -23,7 +23,7 @@ import java.util.List;
 //we gonna use viewholder inside of Newsadapter thats why we will use<NewsAdapter.ViewHolder>
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     //define NewsData List
-    private List<NewsData> news;
+    private List<NewsData> news = null;
     private Context context;
     //constructor to initialize above objects
     public NewsAdapter(List<NewsData> news, Context context) {
@@ -89,8 +89,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     }
 
     public void setNews(List<NewsData> news){
-        List<NewsData> news2 =  new ArrayList<>();
-        news2.addAll(news);
+        news =  new ArrayList<>();
+        news.addAll(news);
         notifyDataSetChanged();
     }
 }
