@@ -115,13 +115,18 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         Log.wtf(LOG_TAG,"wtf");
-        List<NewsData> newsDataList = new ArrayList<>();
+        List<NewsData> newsDataList= null;
+       newsDataList = new ArrayList<>();
         for (NewsData newsData : news){
-            String name = newsData.getArticleName().toLowerCase();
+
+           String name = newsData.getArticleName().toLowerCase();
             if(name.contains(newText))
                 newsDataList.add(newsData);
+
         }
+        if (newsDataList != null && !newsDataList.isEmpty()) {
             mAdapter.setNews(newsDataList);
+        }
             return true;
 
     }
