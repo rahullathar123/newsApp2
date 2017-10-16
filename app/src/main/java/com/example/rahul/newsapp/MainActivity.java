@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
      */
     private RecyclerView recyclerView;
     private NewsAdapter mAdapter;
-    private List<NewsData> news;
+    private List<NewsData> news= null;
+    //initialize list
+    List<NewsData> newsDataList= new ArrayList<>();
     MenuItem searchMenuItem;
     SearchView searchView;
     Toolbar toolbar;
@@ -115,9 +117,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         Log.wtf(LOG_TAG,"wtf");
-        List<NewsData> newsDataList= null;
        newsDataList = new ArrayList<>();
-        for (NewsData newsData : news){
+        // make NewsData final to fix crashing app issue
+        for (final NewsData newsData : news){
 
            String name = newsData.getArticleName().toLowerCase();
             if(name.contains(newText))
