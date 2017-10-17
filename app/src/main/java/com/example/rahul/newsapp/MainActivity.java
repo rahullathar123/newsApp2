@@ -23,11 +23,16 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String URL_Data = "https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47";
+    //put URL for filter Search
+    private static final String URL_Data2 = "https://content.guardianapis.com/sections?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47";
+
     /**
-     * Constant value for the earthquake loader ID. We can choose any integer.
+     * Constant value for the Newsloader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int News_LOADER_ID = 1;
+    //id for second URL
+    private static final int Search_Loader = 2;
     ProgressBar mProgressBar;
     /**
      * Adapter for the list of newsData
@@ -65,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
         // because this activity implements the LoaderCallbacks interface).
         loaderManager.initLoader(News_LOADER_ID, null, this);
+        //restart loader
+        loaderManager.restartLoader(Search_Loader,null,this);
     }
 
 
@@ -76,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         return new NewsLoader(this, URL_Data);
 
     }
+
 
     @Override
     public void onLoadFinished(Loader<List<NewsData>> loader, List<NewsData> news) {
