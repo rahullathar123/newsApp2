@@ -1,5 +1,6 @@
 package com.example.rahul.newsapp;
 
+import android.app.DownloadManager;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
      * Adapter for the list of newsData
      */
     private RecyclerView recyclerView;
+    private DownloadManager.Query query;
     private NewsAdapter mAdapter;
     private List<NewsData> news= null;
     //initialize list
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public Loader<List<NewsData>> onCreateLoader(int i, Bundle bundle) {
         mProgressBar.setVisibility(View.VISIBLE);
         // Create a new loader for the given URL
-        return new NewsLoader(this, URL_Data);
+        return new NewsLoader(this, URL_Data + query);
 
     }
 
@@ -111,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         MenuItem menuItem =menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
+        //extract the input from the SearchView
+        searchView.getQuery();
 
         return true;
     }
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+
         return false;
     }
 
@@ -134,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         }
         mAdapter.setNews(newsDataList);
+
         return true;
 
     }
