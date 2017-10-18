@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public Loader<List<NewsData>> onCreateLoader(int i, Bundle bundle) {
         mProgressBar.setVisibility(View.VISIBLE);
         // Create a new loader for the given URL
-        return new NewsLoader(this, URL_Data + query);
+        return new NewsLoader(this, URL_Data +query);
 
     }
 
@@ -130,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
-        query = newText;
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
@@ -142,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         }
         mAdapter.setNews(newsDataList);
         query = newText;
-
         return true;
 
     }
