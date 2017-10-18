@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         query = newText;
+        getLoaderManager().restartLoader(Search_Loader,null,this);
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
@@ -137,8 +138,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         }
         mAdapter.setNews(newsDataList);
-
-        getLoaderManager().restartLoader(Search_Loader,null,this);
         return true;
 
     }
