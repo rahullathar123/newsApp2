@@ -24,9 +24,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<NewsData>>, SearchView.OnQueryTextListener{
 
     private static final String LOG_TAG = MainActivity.class.getName();
-    private static final String URL_Data = "https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47";
-    //put URL for filter Search
-    private static final String URL_Data2 = "https://content.guardianapis.com/sections?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47";
+    private static final String URL_Data = "https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47&section=";
+
 
     /**
      * Constant value for the Newsloader ID. We can choose any integer.
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
      */
     private static final int News_LOADER_ID = 1;
     //id for second URL
-    private static final int Search_Loader = 2;
     ProgressBar mProgressBar;
     /**
      * Adapter for the list of newsData
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         query = newText;
-        getLoaderManager().restartLoader(Search_Loader,null,this);
+        getLoaderManager().restartLoader(1,null,this);
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
