@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
      * Adapter for the list of newsData
      */
     private RecyclerView recyclerView;
-    private DownloadManager.Query query;
+    private static String query;
     private NewsAdapter mAdapter;
     private List<NewsData> news= null;
     //initialize list
@@ -122,14 +122,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-
+    public boolean onQueryTextSubmit(String query)
+    {
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
+        query = newText;
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
@@ -140,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         }
         mAdapter.setNews(newsDataList);
+        query = newText;
 
         return true;
 
