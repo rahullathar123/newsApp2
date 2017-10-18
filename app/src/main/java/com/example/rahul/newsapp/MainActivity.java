@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public Loader<List<NewsData>> onCreateLoader(int i, Bundle bundle) {
         mProgressBar.setVisibility(View.VISIBLE);
         // Create a new loader for the given URL
+        Log.i("URL2",URL_Data +query);
         return new NewsLoader(this, URL_Data +query);
 
     }
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         MenuItem menuItem =menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
+
 
         return true;
     }
