@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public boolean onQueryTextSubmit(String query)
     {
+        getLoaderManager().restartLoader(1,null,this);
         return false;
     }
 
@@ -127,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onQueryTextChange(String newText) {
         newText = newText.toLowerCase();
         query = newText;
-        getLoaderManager().restartLoader(1,null,this);
        newsDataList = new ArrayList<>();
         // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
