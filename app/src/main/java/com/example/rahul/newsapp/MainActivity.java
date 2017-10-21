@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<NewsData>>, SearchView.OnQueryTextListener{
 
     private static final String LOG_TAG = MainActivity.class.getName();
-    private static final String URL_Data ="https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47&world";
+    private static final String URL_Data ="https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47&section=";
 
 
 
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         getMenuInflater().inflate(R.menu.main_menu,menu);
         MenuItem menuItem =menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView)menuItem.getActionView();
-        //set query to display results
         searchView.setOnQueryTextListener(this);
         return true;
     }
