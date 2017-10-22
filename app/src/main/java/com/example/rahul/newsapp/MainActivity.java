@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        query ="world";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mProgressBar.setVisibility(View.VISIBLE);
         // Create a new loader for the given URL
         Log.i("URL2",URL_Data +query);
+
         return new NewsLoader(this, URL_Data +query);
 
     }
