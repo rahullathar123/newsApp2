@@ -3,6 +3,7 @@ package com.example.rahul.newsapp;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -16,6 +17,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import xdroid.toaster.Toaster;
+
 /**
  * Created by rahul on 2017-09-30.
  */
@@ -25,6 +30,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     //define NewsData List
     private List<NewsData> news = null;
     private Context context;
+    private SwipeRefreshLayout mSwipe;
     //constructor to initialize above objects
     public NewsAdapter(List<NewsData> news, Context context) {
         this.news = news;
@@ -47,15 +53,24 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         holder.articleView.setText(newz.getArticleName());
         holder.dateView.setText(newz.getDate());
 
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "You clicked something" + newz.getSectionBelong(), Toast.LENGTH_SHORT).show();
+                Toaster.toast(R.string.web_message);
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri webUri = Uri.parse(newz.getWebURL());
                 // Create a new intent to view the newsdata URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, webUri);
                 view.getContext().startActivity(websiteIntent);
+
+                if (websiteIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(websiteIntent);
+                } else {
+                    Toast.makeText(context,
+                            "Cannot handle this action",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -73,18 +88,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //define textviews
-        public TextView sectionView;
-        public TextView articleView;
-        public LinearLayout linearLayout;
-        public TextView dateView;
+        @BindView(R.id.titleSection) TextView sectionView;
+        @BindView(R.id.titleArticle) TextView articleView;
+        @BindView(R.id.date) TextView dateView;
+        @BindView(R.id.linearLayout) LinearLayout linearLayout;
+
+
+
         //with this constructor we get above XML views
         public ViewHolder(View itemView) {
             super(itemView);
-            sectionView = (TextView) itemView.findViewById(R.id.titleSection);
-            articleView = (TextView) itemView.findViewById(R.id.titleArticle);
-            dateView = (TextView) itemView.findViewById(R.id.date);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
-
+            ButterKnife.bind(this,itemView);
         }
     }
 

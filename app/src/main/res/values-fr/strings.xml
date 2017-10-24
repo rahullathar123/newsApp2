@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nouvelles App</string>
+    <string name="web_message">Rediriger vers la page Web</string>
+    <string name="section_name">sectionName</string>
+    <string name="date_name">Rendez-vous amoureux</string>
+    <string name="article_name">le titre de larticle</string>
+</resources>

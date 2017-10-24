@@ -14,7 +14,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ import java.util.List;
  */
 public final class NUtils {
 
+    private SimpleDateFormat  simpleDateFormat;
+    Calendar calendar;
     /**
      * Tag for the log messages
      */
@@ -160,8 +164,6 @@ public final class NUtils {
             String webTitle = ob1.getString("webTitle");
             String webURL = ob1.getString("webUrl");
             String date = ob1.getString("webPublicationDate").replaceAll("T", "  #").replaceAll("Z", "");
-
-
             NewsData news = new NewsData(sectionName, webTitle, webURL, date);
             newsList.add(news);
 
