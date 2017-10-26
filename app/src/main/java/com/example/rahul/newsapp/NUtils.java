@@ -122,15 +122,24 @@ public final class NUtils {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    private static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(InputStream inputStream){
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader reader = new BufferedReader(inputStreamReader);
-            String line = reader.readLine();
+            String line = null;
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             while (line != null) {
                 output.append(line);
-                line = reader.readLine();
+                try {
+                    line = reader.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return output.toString();
@@ -141,32 +150,45 @@ public final class NUtils {
      * parsing the given JSON response.
      */
     public static List<NewsData> extractFromJson(String jsonNews) throws JSONException {
+        String nameAuthor="";
+        String sectionName="";
+        String webTitle="";
+        String webURL="";
+        String date="";
 
         List<NewsData> newsList = new ArrayList<>();
-
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(jsonNews)) {
             return null;
         }
-
-        JSONObject jsonObject = null;
-        jsonObject = new JSONObject(jsonNews);
-        JSONObject response;
-        response = jsonObject.getJSONObject("response");
-
-        JSONArray resultResponse;
-        resultResponse = response.getJSONArray("results");
+        JSONObject jsonObject = new JSONObject(jsonNews);
+        JSONObject response = jsonObject.getJSONObject("response");
+        JSONArray resultResponse = response.getJSONArray("results");
 
 
         for (int i = 0; i < resultResponse.length(); i++) {
             JSONObject ob1 = resultResponse.getJSONObject(i);
-            String sectionName = ob1.getString("sectionName");
-            String webTitle = ob1.getString("webTitle");
-            String webURL = ob1.getString("webUrl");
-            String date = ob1.getString("webPublicationDate").replaceAll("T", "  #").replaceAll("Z", "");
-            NewsData news = new NewsData(sectionName, webTitle, webURL, date);
+            if(ob1.has("sectionName")) {
+                sectionName = ob1.getString("sectionName");
+            }
+            if(ob1.has("webTitle")) {
+                webTitle = ob1.getString("webTitle");
+            }
+            if(ob1.has("webUrl")) {
+                webURL = ob1.getString("webUrl");
+            }
+            if(ob1.has("webPublicationDate")) {
+                date = ob1.getString("webPublicationDate").replaceAll("T", "  #").replaceAll("Z", "");
+            }
+            if (ob1.has("tags")) {
+                JSONArray tag = ob1.getJSONArray("tags");
+                if (tag.length() > 0) {
+                    JSONObject firstName = tag.getJSONObject(0);
+                    nameAuthor = firstName.getString("id");
+                }
+            }
+            NewsData news = new NewsData(sectionName, webTitle, webURL, date,nameAuthor);
             newsList.add(news);
-
         }
 
         return newsList;

@@ -11,14 +11,23 @@ public class NewsData {
     private String webURL;
     private String date;
 
+
+    private String author;
     // generate constructor to initialize strings
-    public NewsData(String sectionBelong, String articleName, String webURL, String date) {
+
+    public NewsData(String sectionBelong, String articleName, String webURL, String date, String author) {
         this.sectionBelong = sectionBelong;
         this.articleName = articleName;
         this.webURL = webURL;
         this.date = date;
+        this.author = author;
     }
 
+
+
+    public String getAuthor() {
+        return author;
+    }
     // to get variables we genrate getters
     public String getSectionBelong() {
         return sectionBelong;

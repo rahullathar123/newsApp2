@@ -12,48 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/rahul/.android/build-cache/9014e255e0af95187545d903df59d000e075a0fc/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
-        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da8111d108d5a5ab8c89c57b3b84c3735080eba3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="c11e6797c2066e9119f5ac1a6629f77dd7d4eb86">
+        sha1="6cd9142595c16be834983c789ee7f37f02363b44">
         <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_37fa899fa91fc914c957dbb9fda92cd220a078ed/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/rahul/.android/build-cache/db11ef89523ad2f3f917e2ac755cf69edd6a7283/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="a46763106371f606c2c999e1d4e4f9e65cd1b51f">
-        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6897ead8f068fa04b90ef15c2e5fcd57cc52e796/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/rahul/.android/build-cache/e8f54edc91521112d740057685b388d05516b196/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
-        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f44bbd36f428921d0732d8b0a5bd9e8591a88ecd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/rahul/.android/build-cache/8f14a4290af9230741f0998beab95fe8db8979ff/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="4729b7488c5d6e5b70f4126bc1107cf7da3b9f24">
-        <dex dex="/Users/rahul/Desktop/NewsApp2/newsApp2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_354ee760bd27f0f1492d52ef0fda046dfa27539c/classes.dex" />
     </item>
 
 </items>
