@@ -1,6 +1,4 @@
 package com.example.rahul.newsapp;
-
-
 import android.text.TextUtils;
 import android.util.Log;
 import org.json.JSONArray;
@@ -24,12 +22,12 @@ import java.util.List;
  */
 public final class NUtils {
 
-    private SimpleDateFormat  simpleDateFormat;
-    Calendar calendar;
     /**
      * Tag for the log messages
      */
     private static final String LOG_TAG = NUtils.class.getSimpleName();
+    Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
 
     /**
      * Create a private constructor because no one should ever create a {@link NUtils} object.
@@ -72,7 +70,7 @@ public final class NUtils {
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
-    private static String makeHttpRequest(URL url)  {
+    private static String makeHttpRequest(URL url) {
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -122,7 +120,7 @@ public final class NUtils {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    private static String readFromStream(InputStream inputStream){
+    private static String readFromStream(InputStream inputStream) {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
@@ -150,11 +148,11 @@ public final class NUtils {
      * parsing the given JSON response.
      */
     public static List<NewsData> extractFromJson(String jsonNews) throws JSONException {
-        String nameAuthor="";
-        String sectionName="";
-        String webTitle="";
-        String webURL="";
-        String date="";
+        String nameAuthor = "";
+        String sectionName = "";
+        String webTitle = "";
+        String webURL = "";
+        String date = "";
 
         List<NewsData> newsList = new ArrayList<>();
         // If the JSON string is empty or null, then return early.
@@ -165,20 +163,19 @@ public final class NUtils {
         JSONObject response = jsonObject.getJSONObject("response");
         JSONArray resultResponse = response.getJSONArray("results");
 
-
         for (int i = 0; i < resultResponse.length(); i++) {
             JSONObject ob1 = resultResponse.getJSONObject(i);
-            if(ob1.has("sectionName")) {
+            if (ob1.has("sectionName")) {
                 sectionName = ob1.getString("sectionName");
             }
-            if(ob1.has("webTitle")) {
+            if (ob1.has("webTitle")) {
                 webTitle = ob1.getString("webTitle");
             }
-            if(ob1.has("webUrl")) {
+            if (ob1.has("webUrl")) {
                 webURL = ob1.getString("webUrl");
             }
-            if(ob1.has("webPublicationDate")) {
-                date = ob1.getString("webPublicationDate").replaceAll("T", "  #").replaceAll("Z", "");
+            if (ob1.has("webPublicationDate")) {
+                date = ob1.getString("webPublicationDate");
             }
             if (ob1.has("tags")) {
                 JSONArray tag = ob1.getJSONArray("tags");
@@ -187,7 +184,7 @@ public final class NUtils {
                     nameAuthor = firstName.getString("id");
                 }
             }
-            NewsData news = new NewsData(sectionName, webTitle, webURL, date,nameAuthor);
+            NewsData news = new NewsData(sectionName, webTitle, webURL, date, nameAuthor);
             newsList.add(news);
         }
 

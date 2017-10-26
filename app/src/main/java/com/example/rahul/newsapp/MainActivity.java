@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private static final String URL_Data ="https://content.guardianapis.com/search?api-key=92cc03bd-08db-43d0-a983-4ad1dc2b9a47&section=";
     Context context;
     private SwipeRefreshLayout mSwipe;
-
-
     /**
      * Constant value for the Newsloader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     Toolbar toolbar;
     CheckInternet CheckInternet;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         query ="world";
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         recyclerView.setAdapter(mAdapter);
         if (CheckInternet.isNetwork(this)) {
             //internet is connected do something
-            Toast.makeText(this,"Connected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Connected to internet",Toast.LENGTH_SHORT).show();
         }else{
 //do something, net is not connected
             Toast.makeText(this,"Check your Connection",Toast.LENGTH_SHORT).show();
@@ -155,7 +152,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         newText = newText.toLowerCase();
         query = newText;
        newsDataList = new ArrayList<>();
-        // make NewsData final to fix crashing app issue
         for (NewsData newsData : newsDataList){
 
             String name = newsData.getSectionBelong().toLowerCase();

@@ -10,8 +10,6 @@ public class NewsData {
     private String articleName;
     private String webURL;
     private String date;
-
-
     private String author;
     // generate constructor to initialize strings
 
@@ -22,8 +20,6 @@ public class NewsData {
         this.date = date;
         this.author = author;
     }
-
-
 
     public String getAuthor() {
         return author;
